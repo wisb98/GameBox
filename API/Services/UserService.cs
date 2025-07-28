@@ -17,4 +17,13 @@ public class UserService
     {
         return await _context.Users.ToListAsync();
     }
+
+    public async Task<User> CreateUserAsync(User user)
+    {
+        user.Id = Guid.NewGuid();
+        _context.Users.Add(user);
+        await _context.SaveChangesAsync();
+        return user;
+    }
+
 }
